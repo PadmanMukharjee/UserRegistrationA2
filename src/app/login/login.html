@@ -1,0 +1,56 @@
+
+<div class="content">
+<div class="row">
+<div class="col-md-7"> 
+  <div>
+  <h1 class="welcome">
+    WELCOME !!! 
+  </h1>
+</div>
+   </div>
+<div class="col-md-4 login"> 
+<div class="inside">
+<form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+   <div class="form-group">
+        <label for="username">UserName</label>
+        <input type="text" class="form-control" id="username" required 
+               [(ngModel)]="username"
+              name="username"           
+              >     
+      </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" required
+               [(ngModel)]="password"   
+               name="password"                  
+               >      
+      </div>
+      <div>
+        <a [routerLink]="['/register']">Not Registerd?</a>
+        <button [routerLink]="['/welcome']" type="submit" class=" btn btn-primary" id="login" (click)="onSubmit()">Login</button>
+      </div>
+</form>
+</div>
+</div>
+</div>
+</div>
+
+
+<style>
+  .login{
+      margin-top: 100px;      
+      border-radius: 5px;        
+  }
+  .inside{
+      margin:10px;
+  }
+ .welcome{
+   margin: 100px;
+   color: darkslateblue;
+  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+  font-stretch: ultra-expanded;
+  text-align: center;
+
+ }
+
+</style>
