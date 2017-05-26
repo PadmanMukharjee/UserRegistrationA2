@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
 import {FormsModule, ReactiveFormModule } from '@angular/forms';
-import { FormControl, FormGroup,Validators,FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup,Validators,FormBuilder,Email } from '@angular/forms';
+import {ControlMessages} from '../common/validation.messages';
+import { ValidationService } from '../Services/validation.service';
+
 //import {CommonModule} from '@angular/common';
 
 @Component({
@@ -15,27 +18,32 @@ regForm:FormGroup;
     this.createForm();
   }
 
- constructor(private fb: FormBuilder) { // <--- inject FormBuilder
+ constructor(private fb: FormBuilder) { 
     this.createForm();
   }
 
 createForm() {
   this.regForm=this.fb.group({
     name:['',Validators.required],
-  username : ['nnn',[Validators.required,Validators.minLength(4)]],
-    password : ''
+  username : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(6)]],
+    password : ['',[Validators.required,Validators.minLength(8)]],
+    zip: ['', Validators.pattern('[0-9]{5}')],
+    email:['',[Validators.required]]
 });
 
- this.regForm.valueChanges
-      .subscribe(data => this.onValueChanged(data));
+/* this.regForm.valueChanges
+     .subscribe(data => this.onValueChanged(data));
 
     this.onValueChanged(); // (re)set validation messages now
-
+*/
   }
 
    formErrors = {
-     'name':'',
-    'username': '',    
+    'name':'',
+    'username': '',
+    'password':'',
+    'zip':''    ,
+    'email':''
   };
 
   onValueChanged(data?: any) {
@@ -65,6 +73,16 @@ createForm() {
       'minlength':     'Name must be at least 4 characters long.',
       'maxlength':     'Name cannot be more than 24 characters long.',
       'forbiddenName': 'Someone named "Bob" cannot be a hero.'
+    },
+    'password':{
+      'required':      'Password is required.',
+      'minlength':     'Name must be at least 8 characters long.',
+    },
+    'zip':{
+      'pattern':'ZIP code pattern is not correct',
+    },
+    'email':{
+       'required':      'Email is required.'
     }
   };
 
