@@ -8,6 +8,7 @@ import {RegisterSuccessComponent} from './regSuceess.component';
 import {RegisterRoutingModule} from './register.routing';
 import { ValidationService } from '../Services/validation.service';
 import {ControlMessages} from '../common/validation.messages';
+import {HighlightDirective} from '../Directives/ColorChnageDirective'
 import {EmailValidator} from '../Directives/validateEmail';
 
 @NgModule({
@@ -19,8 +20,8 @@ import {EmailValidator} from '../Directives/validateEmail';
         RegisterRoutingModule     
         ],
         providers:[ValidationService],
-        directives:[EmailValidator]
-     declarations:[RegisterComponent,RegisterSuccessComponent,ControlMessages,EmailValidator],
+        directives:[EmailValidator,HighlightDirective]
+     declarations:[RegisterComponent,RegisterSuccessComponent,ControlMessages,EmailValidator,HighlightDirective],
      bootstrap:[RegisterComponent]   
     
 })

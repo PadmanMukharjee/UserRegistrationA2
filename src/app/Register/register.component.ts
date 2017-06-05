@@ -26,9 +26,9 @@ createForm() {
   this.regForm=this.fb.group({
     name:['',Validators.required],
   username : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(6)]],
-    password : ['',[Validators.required,Validators.minLength(8)]],
+    password : ['',[Validators.required,Validators.minLength(8),ValidationService.passwordValidator]],
     zip: ['', Validators.pattern('[0-9]{5}')],
-    email:['',[Validators.required]]
+    email:['',[Validators.required,ValidationService.emailValidator]]
 });
 
 /* this.regForm.valueChanges
